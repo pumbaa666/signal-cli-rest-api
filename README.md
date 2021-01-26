@@ -1,34 +1,56 @@
-# Dockerized Signal Messenger REST API
+# About
+**signal-web** is a local web-server for Signal messenger https://signal.org
+Served as a docker image it runs on signal-cli api https://github.com/AsamK/signal-cli and signal-cli-rest-api https://github.com/bbernhard/signal-cli-rest-api/
 
-This project creates a small dockerized REST API around [signal-cli](https://github.com/AsamK/signal-cli).
-
-At the moment, the following functionality is exposed via REST:
-
-- Register a number
-- Verify the number using the code received via SMS
-- Send message (+ attachments) to multiple recipients (or a group)
-- Receive messages
-- Link devices
-- Create/List/Remove groups
-- List/Serve/Delete attachments
-- Update profile
-
-## Examples
-
-Sample `docker-compose.yml`file:
-
-```sh
-version: "3"
-services:
-  signal-cli-rest-api:
-    image: bbernhard/signal-cli-rest-api:latest
-    ports:
-      - "8080:8080" #map docker port 8080 to host port 8080.
-    volumes:
-      - "./signal-cli-config:/home/.local/share/signal-cli" #map "signal-cli-config" folder on host system into docker container. the folder contains the password and cryptographic keys when a new number is registered
-
+# Versions
+```
+docker-ce 19.03.14
+docker-compose 1.27.4
+java jdk 11.0.6
 ```
 
-The Swagger API documentation can be found [here](https://bbernhard.github.io/signal-cli-rest-api/). If you prefer a simple text file like API documentation have a look [here](https://github.com/bbernhard/signal-cli-rest-api/blob/master/doc/EXAMPLES.md)
+# Install Java
+```
+sudo apt update
+sudo apt install openjdk-11-jdk
+```
 
-In case you need more functionality, please **file a ticket** or **create a PR**.
+# Install Docker
+https://docs.docker.com/engine/install/debian/#install-using-the-repository
+
+```
+sudo apt-get update
+sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common
+
+#Add Docker’s official GPG key:
+$ curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
+
+#Verify that you now have the key with the fingerprint
+sudo apt-key fingerprint 0EBFCD88
+
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/debian \
+   $(lsb_release -cs) \
+   stable"
+
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+```
+
+# Install docker-compose
+https://stackoverflow.com/questions/42139982/version-in-docker-compose-yml-is-unsupported-you-might-be-seeing-this-error
+```
+which docker-compose
+	/usr/bin/docker-compose
+sudo rm /usr/bin/docker-compose
+curl -L https://github.com/docker/compose/releases/download/1.20.0/docker-compose-`uname -s`-`uname -m` -o /usr/bin/docker-compose
+chmod +x /usr/bin/docker-compose
+```
+
+# API
+https://github.com/bbernhard/signal-cli-rest-api/blob/master/doc/HOMEASSISTANT.md

@@ -1,3 +1,6 @@
-signal-cli-config
-src/main
-src/signal-cli-rest-api
+.idea
+node_modules
+/conf/SENDER_PHONE_NUMBER
+/conf/docker-ip
+/external-tools/docker-toolbox/
+/external-tools/git-bash/

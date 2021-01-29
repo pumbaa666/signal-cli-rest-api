@@ -1,0 +1,22 @@
+{
+    "appenders": {
+        "file": {
+            "type": "file",
+            "filename": "logs/signal-web.log",
+            "maxLogSize": 52428800,
+            "numBackups": 5
+        },
+        "console": {
+            "type": "console"
+        }
+    },
+    "categories": {
+        "default": {
+            "appenders": [
+                "file",
+                "console"
+            ],
+            "level": "DEBUG"
+        }
+    }
+}

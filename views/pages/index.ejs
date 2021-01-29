@@ -1,0 +1,19 @@
+<form id="link" method="post" action="/link">
+    <input type="text" name="deviceName" value="device-name" />
+    <input type="submit" value="Link my phone" />
+</form>
+
+<form id="send" method="post" action="/send">
+    <input type="text" name="senderNumber" value="sender number" />
+    <input type="text" name="recipientNumber" value="recipient number" />
+    <input type="text" name="message" value="message" />
+    <input type="submit" value="Send message" />
+</form>
+
+<form id="receive" method="get" action="/receive">
+    <input type="submit" value="Get messages" />
+    <% if( typeof(messages) != "undefined") { %>
+        <textarea name="inbox" form="receive"><% if (messages) { %><%= messages %>
+        <% } else { %>No messages yet<% } %></textarea>
+    <% } %>
+</form>

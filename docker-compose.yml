@@ -1,10 +1,18 @@
 version: "3"
 services:
-  signal-cli-rest-api:
-    build: "."
+  pumbaa-signal-web:
+    container_name: pumbaa-signal-web
+    build:
+      context: .
+      args:
+        - API_UID=1010
+        - API_GID=1010
     environment:
-      - PORT=8080
+      - PORT=8080 #TODO
+      - API_UID=1010
+      - API_GID=1010
     ports:
-      - "8080:8080" #map docker port 8080 to host port 8080.
+      - "80:8080"
     volumes:
-      - "./signal-cli-config:/home/.local/share/signal-cli" #map "signal-cli-config" folder on host system into docker container. the folder contains the password and cryptographic keys when a new number is registered
+      - "./signal-cli-config:/home/.local/share/signal-cli" # TODO delete ?
+#      - "./conf:/app/signal-web/conf"

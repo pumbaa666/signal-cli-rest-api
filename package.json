@@ -10,11 +10,13 @@
 		"body-parser": "^1.19.0",
 		"request": "^2.88.2",
 		"docker-host-ip": "^1.0.1",
-		"fs": "^0.0.1-security"
+		"fs": "^0.0.1-security",
+		"child_process": "^1.0.2"
 	},
 	"scripts": {
 		"start": "node src/http_server.js --config conf/app.js",
-		"watch": "nodemon src/http_server.js"
+		"watch": "nodemon src/http_server.js -- --config conf/dev-config.js",
+		"build": "./build.sh ARG"
 	},
 	"author": "Pumbaa666 <pumbaa666@gmail.com>",
 	"description": "Signal Messenger webapp",

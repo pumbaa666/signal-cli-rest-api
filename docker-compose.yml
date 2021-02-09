@@ -1,18 +1,20 @@
-version: "3"
+version: "3.7"
 services:
   pumbaa-signal-web:
-    container_name: pumbaa-signal-web
+    # container_name: pumbaa-signal-web
     build:
       context: .
       args:
+        - SIGNAL_CLI_VERSION=0.7.4
+        - ZKGROUP_VERSION=0.7.0
+        - JAVA_MINIMAL=/opt/java-minimal
         - API_UID=1010
         - API_GID=1010
     environment:
-      - PORT=8080 #TODO
       - API_UID=1010
       - API_GID=1010
     ports:
       - "80:8080"
     volumes:
-      - "./signal-cli-config:/home/.local/share/signal-cli" # TODO delete ?
-#      - "./conf:/app/signal-web/conf"
+      - "./signal-cli-config:/home/.local/share/signal-cli"
+      - "./conf:/app/signal-web/conf"

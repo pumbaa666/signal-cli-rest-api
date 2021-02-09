@@ -1,4 +1,4 @@
-const conf = require('../conf/app');
+const conf = require('../conf/app.js');
 
 /*
  * Logger
@@ -21,6 +21,11 @@ const request = require('request');
 fs = require('fs');
 const async_series = require('async').series;
 const middleware = require('./middleware');
+
+/*
+ * Process
+ */
+const { spawn } = require("child_process");
 
 let app = express();
 //app.use(express.static('scripts')); // Serves static files. Used in ./views/*.ejs files to include ./scripts/*.js
@@ -105,31 +110,61 @@ app.get('/test', function (req, res, next) {
 });
 */
 
-app.post('/link', middleware.checkBaseUrl, function (req, res, next) {
-    let deviceName = req.body.deviceName; // TODO check not null
-    let url = req.headers.baseUrl + '/v1/qrcodelink?device_name=' + deviceName;
+app.get('/link', middleware.checkBaseUrl, function (req, res, next) {
+    let deviceName = req.query.deviceName; // TODO check not null
 
-    console.debug('getting QR Code on : ' + url);
+    const confPath="/home/.local/share/signal-cli"
+    // const ls = spawn("signal-cli", ["--config ", confPath, "link", "-n", "pumbaa-signal-web"]);
+    // const signalCli = spawn("docker", ["run", "signal-cli", "-v"]); // TODO version dev/prod (pas de docker run en prod, direct signal-cli)
+    // const signalCli = spawn("signal-cli", ["-v"]); // TODO version dev/prod (pas de docker run en prod, direct signal-cli)
+    const signalCli = spawn(conf.signalCli.command, conf.signalCli.args); // TODO version dev/prod (pas de docker run en prod, direct signal-cli)
 
-    request.get({
-        headers: {'content-type': 'application/json'},
-        url: url
-    }, function (error, response, body) {
-        if (error) {
-            return next(error);
-        }
-
-        let bodyObject = JSON.parse(body);
-        if (bodyObject && bodyObject.error) {
-            return next(bodyObject);
-        }
-
-        let sent = JSON.parse(response.request.body); // TODO check
-        return res.status(200).json({"sent":sent});
-        // return res.render('pages/link', {qrcodeUrl: url});
+    signalCli.stdout.on("data", data => {
+        console.log(`stdout: ${data}`);
+        return res.status(200).json({"stdout":data});
     });
 
+    signalCli.stderr.on("data", data => {
+        console.log(`stderr: ${data}`);
+        return next(data);
+    });
 
+    signalCli.on('error', (error) => {
+        console.log(`error: ${error.message}`);
+        return next(error);
+    });
+
+    signalCli.on("close", code => {
+        console.log(`child process exited with code ${code}`);
+    });
+});
+
+app.get('/version', middleware.checkBaseUrl, function (req, res, next) {
+    const confPath="/home/.local/share/signal-cli"
+    const signalCli = spawn("docker", ["run", "signal-web-cli", "-v"]); // TODO version dev/prod (pas de docker run en prod, direct signal-cli)
+    // const signalCli = spawn("signal-cli", ["-v"]); // TODO version dev/prod (pas de docker run en prod, direct signal-cli)
+
+    signalCli.stdout.on("data", data => {
+        let version = `${data}`.trim();
+        if(!version.includes("signal-cli")) {
+            return res.status(400).send("Can't find version in "); // TODO next
+        }
+        return res.status(200).json({"version":version});
+    });
+
+    signalCli.stderr.on("data", data => {
+        console.log(`stderr: ${data}`);
+        return next(data);
+    });
+
+    signalCli.on('error', (error) => {
+        console.log(`error: ${error.message}`);
+        return next(error);
+    });
+
+    signalCli.on("close", code => {
+        console.log(`child process exited with code ${code}`);
+    });
 });
 
 
@@ -202,8 +237,8 @@ async_series([
         done();
     },
     (done) => {
-        logger.info('Listening on port ' + conf.app.port);
-        app.listen(conf.app.port);
+        logger.info('Listening on port ' + conf.http.port);
+        app.listen(conf.http.port);
         done();
     }
 ]);

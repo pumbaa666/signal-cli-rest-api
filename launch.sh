@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 . scripts/bash-colors.sh # Load echo colors
 
 #Running

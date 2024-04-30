@@ -1,0 +1,17 @@
+<% if( typeof(phoneNumber) != "undefined") { %>
+    <% if (phoneNumber) { %>
+      <h2>Code envoyé à <%= phoneNumber %></h2>
+    <% } else {%>
+        Erreur<br />
+        <a href="/">Retour</a>
+    <% } %>
+<% } else {%>
+    Erreur<br />
+    <a href="/">Retour</a>
+<% } %>
+
+<form method="post" action="/verify">
+    <input type="text" name="phoneNumber" value="<%= phoneNumber %>"/>
+    <input type="text" name="registerCode" value="Code"/>
+    <input type="submit" value="Verify my phone" />
+</form>

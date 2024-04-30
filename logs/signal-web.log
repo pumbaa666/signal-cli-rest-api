@@ -1,0 +1,122 @@
+[2021-02-10T16:16:01.968] [INFO] app - Listening on port 8080
+[2021-02-10T16:16:03.853] [ERROR] app - { Error: spawn signal-web ENOENT
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:240:19)
+    at onErrorNT (internal/child_process.js:415:16)
+    at process._tickCallback (internal/process/next_tick.js:63:19)
+  errno: 'ENOENT',
+  code: 'ENOENT',
+  syscall: 'spawn signal-web',
+  path: 'signal-web',
+  spawnargs: [ '-v' ] }
+[2021-02-10T16:16:37.676] [INFO] app - Listening on port 8080
+[2021-02-10T16:16:50.626] [INFO] app - Listening on port 8080
+[2021-02-10T16:19:06.057] [INFO] app - Listening on port 8080
+[2021-02-10T16:19:06.708] [ERROR] app - { Error: spawn signal-cli ENOENT
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:240:19)
+    at onErrorNT (internal/child_process.js:415:16)
+    at process._tickCallback (internal/process/next_tick.js:63:19)
+  errno: 'ENOENT',
+  code: 'ENOENT',
+  syscall: 'spawn signal-cli',
+  path: 'signal-cli',
+  spawnargs: [ '-v' ] }
+[2021-02-10T16:19:47.579] [INFO] app - Listening on port 8080
+[2021-02-10T16:19:49.922] [ERROR] app - { Error: spawn signal-cli ENOENT
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:240:19)
+    at onErrorNT (internal/child_process.js:415:16)
+    at process._tickCallback (internal/process/next_tick.js:63:19)
+  errno: 'ENOENT',
+  code: 'ENOENT',
+  syscall: 'spawn signal-cli',
+  path: 'signal-cli',
+  spawnargs: [ '-v' ] }
+[2021-02-10T16:29:08.517] [INFO] app - Listening on portZZ 8080
+[2021-02-10T16:29:17.881] [INFO] app - Listening on portZZ 8080
+[2021-02-10T16:29:19.217] [ERROR] app - ReferenceError: signalCli is not defined
+    at D:\programmation\node.js\signal-web\src\http_server.js:148:5
+    at Layer.handle [as handle_request] (D:\programmation\node.js\signal-web\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\programmation\node.js\signal-web\node_modules\express\lib\router\route.js:137:13)
+    at checkBaseUrl (D:\programmation\node.js\signal-web\src\middleware.js:20:20)
+    at Layer.handle [as handle_request] (D:\programmation\node.js\signal-web\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\programmation\node.js\signal-web\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (D:\programmation\node.js\signal-web\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (D:\programmation\node.js\signal-web\node_modules\express\lib\router\layer.js:95:5)
+    at D:\programmation\node.js\signal-web\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (D:\programmation\node.js\signal-web\node_modules\express\lib\router\index.js:335:12)
+[2021-02-10T16:32:58.425] [INFO] app - Listening on port 8080
+[2021-02-10T16:33:02.600] [ERROR] app - ReferenceError: signalCli is not defined
+    at D:\programmation\node.js\signal-web\src\http_server.js:147:5
+    at Layer.handle [as handle_request] (D:\programmation\node.js\signal-web\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\programmation\node.js\signal-web\node_modules\express\lib\router\route.js:137:13)
+    at checkBaseUrl (D:\programmation\node.js\signal-web\src\middleware.js:20:20)
+    at Layer.handle [as handle_request] (D:\programmation\node.js\signal-web\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\programmation\node.js\signal-web\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (D:\programmation\node.js\signal-web\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (D:\programmation\node.js\signal-web\node_modules\express\lib\router\layer.js:95:5)
+    at D:\programmation\node.js\signal-web\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (D:\programmation\node.js\signal-web\node_modules\express\lib\router\index.js:335:12)
+[2021-02-10T16:33:36.731] [INFO] app - Listening on port 8080
+[2021-02-10T16:33:37.352] [INFO] app - Listening on port 8080
+[2021-02-10T16:33:41.006] [INFO] app - Listening on port 8080
+[2021-02-10T16:34:05.229] [INFO] app - Listening on port 8080
+[2021-02-10T16:34:08.393] [INFO] app - Listening on port 8080
+[2021-02-10T16:34:08.989] [INFO] app - Listening on port 8080
+[2021-02-10T16:35:29.310] [INFO] app - Listening on port 8080
+[2021-02-10T16:35:45.046] [INFO] app - Listening on port 8080
+[2021-02-10T16:36:23.150] [INFO] app - Listening on port 8080
+[2021-02-10T16:36:32.773] [INFO] app - Listening on port 8080
+[2021-02-10T16:36:36.010] [INFO] app - Listening on port 8080
+[2021-02-10T16:36:40.059] [INFO] app - Listening on port 8080
+[2021-02-10T16:36:41.301] [INFO] app - Listening on port 8080
+[2021-02-10T16:36:44.426] [INFO] app - Listening on port 8080
+[2021-02-10T16:36:45.992] [INFO] app - Listening on port 8080
+[2021-02-10T16:36:50.137] [INFO] app - Listening on port 8080
+[2021-02-10T16:36:52.249] [INFO] app - Listening on port 8080
+[2021-02-10T16:37:05.358] [INFO] app - Listening on port 8080
+[2021-02-10T16:37:09.898] [INFO] app - Listening on port 8080
+[2021-02-10T16:37:38.822] [INFO] app - Listening on port 8080
+[2021-02-10T16:37:40.244] [INFO] app - Listening on port 8080
+[2021-02-10T16:37:58.709] [INFO] app - Listening on port 8080
+[2021-02-10T16:38:04.480] [INFO] app - Listening on port 8080
+[2021-02-10T16:38:17.310] [INFO] app - Listening on port 8080
+[2021-02-10T16:38:19.072] [INFO] app - Listening on port 8080
+[2021-02-10T16:38:40.822] [INFO] app - Listening on port 8080
+[2021-02-10T16:38:46.518] [INFO] app - Listening on port 8080
+[2021-02-10T16:38:49.329] [INFO] app - Listening on port 8080
+[2021-02-10T16:38:51.101] [INFO] app - Listening on port 8080
+[2021-02-10T16:39:12.434] [INFO] app - Listening on port 8080
+[2021-02-10T16:39:12.980] [INFO] app - Listening on port 8080
+[2021-02-10T16:39:17.093] [INFO] app - Listening on port 8080
+[2021-02-10T16:39:40.894] [INFO] app - Listening on port 8080
+[2021-02-10T16:39:57.847] [INFO] app - Listening on port 8080
+[2021-02-10T16:40:00.138] [INFO] app - Listening on port 8080
+[2021-02-10T16:40:22.309] [INFO] app - Listening on port 8080
+[2021-02-10T16:40:32.306] [INFO] app - Listening on port 8080
+[2021-02-10T16:40:34.919] [INFO] app - Listening on port 8080
+[2021-02-10T16:40:40.612] [INFO] app - Listening on port 8080
+[2021-02-10T16:40:42.287] [INFO] app - Listening on port 8080
+[2021-02-10T16:40:51.530] [INFO] app - Listening on port 8080
+[2021-02-10T16:40:54.786] [INFO] app - Listening on port 8080
+[2021-02-10T16:40:58.273] [INFO] app - Listening on port 8080
+[2021-02-10T16:41:08.490] [INFO] app - Listening on port 8080
+[2021-02-10T16:41:15.024] [INFO] app - Listening on port 8080
+[2021-02-10T16:41:22.027] [INFO] app - Listening on port 8080
+[2021-02-10T16:41:25.552] [INFO] app - Listening on port 8080
+[2021-02-10T16:41:27.919] [INFO] app - Listening on port 8080
+[2021-02-10T16:41:36.443] [INFO] app - Listening on port 8080
+[2021-02-10T16:41:38.171] [INFO] app - Listening on port 8080
+[2021-02-10T16:41:39.883] [INFO] app - Listening on port 8080
+[2021-02-10T16:41:41.701] [INFO] app - Listening on port 8080
+[2021-02-10T16:41:44.843] [INFO] app - Listening on port 8080
+[2021-02-10T16:42:08.798] [INFO] app - Listening on port 8080
+[2021-02-10T16:42:11.456] [INFO] app - Listening on port 8080
+[2021-02-10T16:42:12.497] [INFO] app - Listening on port 8080
+[2021-02-10T16:42:14.846] [INFO] app - Listening on port 8080
+[2021-02-10T16:42:21.105] [INFO] app - Listening on port 8080
+[2021-02-10T16:42:23.099] [INFO] app - Listening on port 8080
+[2021-02-10T16:42:27.624] [INFO] app - Listening on port 8080
+[2021-02-10T16:42:29.441] [INFO] app - Listening on port 8080
+[2021-02-10T16:42:34.318] [DEBUG] app - spawning : docker / run,signal-cli,-v
+[2021-02-10T16:42:36.483] [DEBUG] app - <Buffer 73 69 67 6e 61 6c 2d 63 6c 69 20 30 2e 37 2e 34 0a>
+[2021-02-10T16:42:36.558] [DEBUG] app - api child process exited with code 0
+[2021-02-10T16:43:27.079] [INFO] app - Listening on port 8080

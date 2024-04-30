@@ -1,4 +1,5 @@
-const conf = require('../conf/app.js');
+// const conf = require('../conf/app.js');
+const config = require('config');
 
 /*
  * Logger
@@ -110,39 +111,47 @@ app.get('/test', function (req, res, next) {
 });
 */
 
+function spawnSignalCli(args) {
+    const command = config.get('signalCli.command');
+    const signalcliArgs = config.get('signalCli.args');
+    args = signalcliArgs.concat(args);
+    logger.debug("spawning : " + command + " / " + args);
+    return spawn(command, args);
+}
+
 app.get('/link', middleware.checkBaseUrl, function (req, res, next) {
     let deviceName = req.query.deviceName; // TODO check not null
-
-    const confPath="/home/.local/share/signal-cli"
-    // const ls = spawn("signal-cli", ["--config ", confPath, "link", "-n", "pumbaa-signal-web"]);
-    // const signalCli = spawn("docker", ["run", "signal-cli", "-v"]); // TODO version dev/prod (pas de docker run en prod, direct signal-cli)
-    // const signalCli = spawn("signal-cli", ["-v"]); // TODO version dev/prod (pas de docker run en prod, direct signal-cli)
-    const signalCli = spawn(conf.signalCli.command, conf.signalCli.args); // TODO version dev/prod (pas de docker run en prod, direct signal-cli)
+    const signalCli = spawnSignalCli("link");
 
     signalCli.stdout.on("data", data => {
-        console.log(`stdout: ${data}`);
+        
+        logger.debug(data);
+        // let version = `${data}`.trim();
+        // if(!version.includes("signal-cli")) {
+        //     return res.status(400).send("Can't find version in "); // TODO next
+        // }
         return res.status(200).json({"stdout":data});
     });
 
     signalCli.stderr.on("data", data => {
-        console.log(`stderr: ${data}`);
+        logger.error(`api stderr: ${data}`);
         return next(data);
     });
 
     signalCli.on('error', (error) => {
-        console.log(`error: ${error.message}`);
+        logger.error(`api error: ${error.message}`);
         return next(error);
     });
 
     signalCli.on("close", code => {
-        console.log(`child process exited with code ${code}`);
+        logger.debug(`api child process exited with code ${code}`);
     });
 });
 
+
 app.get('/version', middleware.checkBaseUrl, function (req, res, next) {
-    const confPath="/home/.local/share/signal-cli"
-    const signalCli = spawn("docker", ["run", "signal-web-cli", "-v"]); // TODO version dev/prod (pas de docker run en prod, direct signal-cli)
-    // const signalCli = spawn("signal-cli", ["-v"]); // TODO version dev/prod (pas de docker run en prod, direct signal-cli)
+    // const confPath="/home/.local/share/signal-cli"
+    const signalCli = spawnSignalCli("-v");
 
     signalCli.stdout.on("data", data => {
         let version = `${data}`.trim();
@@ -153,20 +162,19 @@ app.get('/version', middleware.checkBaseUrl, function (req, res, next) {
     });
 
     signalCli.stderr.on("data", data => {
-        console.log(`stderr: ${data}`);
+        logger.error(`api stderr: ${data}`);
         return next(data);
     });
 
     signalCli.on('error', (error) => {
-        console.log(`error: ${error.message}`);
+        logger.error(`api error: ${error.message}`);
         return next(error);
     });
 
     signalCli.on("close", code => {
-        console.log(`child process exited with code ${code}`);
+        logger.debug(`api child process exited with code ${code}`);
     });
 });
-
 
 app.post('/send', middleware.checkBaseUrl, function (req, res, next) {
     let senderNumber = req.body.senderNumber; // TODO check
@@ -237,8 +245,8 @@ async_series([
         done();
     },
     (done) => {
-        logger.info('Listening on port ' + conf.http.port);
-        app.listen(conf.http.port);
+        logger.info('Listening on port ' + config.get('http.port'));
+        app.listen(config.get('http.port'));
         done();
     }
 ]);

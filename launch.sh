@@ -2,7 +2,7 @@
 . scripts/bash-colors.sh # Load echo colors
 
 #Running
-docker-compose up -d
+#docker-compose up -d
 
 #Checking
 signalWebContainerId=$(docker ps -qf name=pumbaa-signal-web)

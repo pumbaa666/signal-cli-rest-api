@@ -5,7 +5,7 @@ const conf = {
 		
 	signalCli: {
 		command: 'docker',
-		args: ['run', 'signal-web', '-v']
+		args: ['run', 'signal-cli', '-v']
 	}
 };
 

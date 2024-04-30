@@ -34,21 +34,23 @@ echo ""
 read -r -p "Are you sure? [y/N] " response
 case "$response" in
     [yY][eE][sS]|[yY])
-        docker buildx rm multibuilder
+        #docker buildx rm multibuilder
 		
-		docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+		#docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 		
-		docker buildx create --name multibuilder
-		docker buildx use multibuilder
+		#docker buildx create --name multibuilder
+		#docker buildx use multibuilder
 		
 		if [[ "$TAG" == "stable" ]]; then
-			docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t bbernhard/signal-cli-rest-api:$VERSION . --push
-			docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t bbernhard/signal-cli-rest-api:latest . --push
+#			docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t bbernhard/signal-cli-rest-api:$VERSION . --push
+#			docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t bbernhard/signal-cli-rest-api:latest . --push
+			echo "rien"
         fi
 
 		if [[ "$TAG" == "dev" ]]; then
-			docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t bbernhard/signal-cli-rest-api:${VERSION}-dev . --push
-			docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t bbernhard/signal-cli-rest-api:latest-dev . --push
+#			docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t bbernhard/signal-cli-rest-api:${VERSION}-dev . --push
+#			docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t bbernhard/signal-cli-rest-api:latest-dev . --push
+			echo "rien"
         fi
 
 		;;

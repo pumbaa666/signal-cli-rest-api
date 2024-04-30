@@ -4,7 +4,7 @@ const conf = {
 	},
 		
 	signalCli: {
-		command: 'signal-web',
+		command: 'signal-cli',
 		args: ['-v']
 	}
 };
